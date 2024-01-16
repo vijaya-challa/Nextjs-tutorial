@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -19,14 +19,9 @@ const PostCard = () => {
       </div>
 
       <div className={styles.bottom}>
-        <h1>Title</h1>
-        <p className={styles.desc}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta
-          aspernatur quibusdam iusto amet asperiores vitae qui culpa, quod, quam
-          officiis nulla placeat nam tempora repellat fuga modi eius sit ut.
-          Quas, repellat? Ipsum nihil molestias nostrum iure autem ea dolorum?
-        </p>
-        <Link href="/blog/post" className={styles.link}>
+        <h1 className={styles.title}>{post.title}</h1>
+        <p className={styles.desc}>{post.body}</p>
+        <Link href={`/blog/${post.id}`} className={styles.link}>
           Read More
         </Link>
       </div>
