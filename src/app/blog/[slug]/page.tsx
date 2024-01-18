@@ -20,23 +20,13 @@ const SlugPage = async ({ params }) => {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <Image
-          src="https://images.unsplash.com/photo-1703762929639-16360d03c730?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-          fill
-          className={styles.img}
-        />
+        {post.img && (
+          <Image src={post.img} alt="" fill className={styles.img} />
+        )}
       </div>
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>{post?.title}</h1>
+        <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
-          <Image
-            src="https://images.unsplash.com/photo-1703762929639-16360d03c730?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-            width={50}
-            height={50}
-            className={styles.avatar}
-          />
           {post && (
             <Suspense fallback={<div>Loading...</div>}>
               <PostUser userId={post.userId} />
@@ -44,10 +34,12 @@ const SlugPage = async ({ params }) => {
           )}
           <div className={styles.detailtext}>
             <span className={styles.detaiTitle}>Published</span>
-            <span className={styles.detailvalue}>13.01.2024</span>
+            <span className={styles.detailvalue}>
+              {post.createdAt.toString().slice(4, 16)}
+            </span>
           </div>
         </div>
-        <div className={styles.content}>{post?.body}</div>
+        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
   );
